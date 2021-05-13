@@ -7,7 +7,6 @@ import styled from "styled-components";
 import { info } from "./reducer";
 const Map = () => {
   const selected = useSelector(info);
-  console.log(selected);
   const calcradii = (cases) => {
     var radius = (cases / 10000000) * 20;
     return radius;

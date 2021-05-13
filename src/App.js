@@ -13,45 +13,34 @@ import Piechart from "./features/Piechart";
 function App() {
   const dispatch = useDispatch();
   const [loading, setloading] = useState(true);
-  useEffect( () => {
-    
-     axios
+  useEffect(() => {
+    axios
       .get("https://disease.sh/v3/covid-19/countries")
       .then((r) => {
         dispatch(reducer1(r.data));
       })
-      .catch((e) => alert(e.message));
-     axios
+      .catch((e) => console.log(e.message));
+    axios
       .get("https://disease.sh/v3/covid-19/all")
       .then((r2) => {
         dispatch(reducer1(r2.data));
         dispatch(reducer2(r2.data));
       })
-      .catch((e) => alert(e.message));
-     axios
+      .catch((e) => console.log(e.message));
+    axios
       .get("https://disease.sh/v3/covid-19/historical/all?lastdays=10")
       .then((r3) => {
         dispatch(reducer1(r3.data));
-        setloading(false)
+        setloading(false);
       })
-      .catch((e) => alert(e.message));
-  },[dispatch]);
-
-  
-
- 
+      .catch((e) => console.log(e.message));
+  }, [dispatch]);
 
   if (loading) {
     return (
       <div className="loader">
         {" "}
-        <Loader
-          type="TailSpin"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          
-        />
+        <Loader type="TailSpin" color="#00BFFF" height={100} width={100} />
       </div>
     );
   } else {

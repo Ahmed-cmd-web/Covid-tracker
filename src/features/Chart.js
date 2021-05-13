@@ -31,11 +31,13 @@ const Chart = () => {
     },
   ];
   const data = {
-    labels: Object.keys(state.data[2]?.cases),
+    labels: Object.keys(state.data[2][topic.topic]),
+
     datasets: [
+      
       {
         label: "cases",
-        data: Object.values(state.data[2]?.cases),
+        data: Object.values(state.data[2][topic.topic]),
         fill: true,
         backgroundColor: "lightcoral",
         borderColor: "red",

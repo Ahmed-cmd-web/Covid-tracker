@@ -36,9 +36,21 @@ const Container = styled.a`
   width: 32.5%;
   height: 130px;
   color: grey;
+  &  h5 {
+    flex-wrap: wrap;
+    width: 60%;
+  }
+
   flex-direction: column;
   box-shadow: -1px 7px 5px 3px gainsboro;
   transition: all 0.2s ease;
+  @media only screen and (min-width: 501px) {
+    box-shadow: -1px 7px 5px 3px gainsboro;
+  }
+  @media only screen and (max-width: 500px) {
+    box-shadow: none;
+  }
+
   text-decoration: none;
   cursor: pointer;
   .tar {

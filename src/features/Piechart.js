@@ -12,10 +12,13 @@ const Piechart = () => {
 
   const data = {
     labels: [
-      `Cases:${((state.data[1]?.cases / 7200000000)*100).toFixed(3)}`,
-      `Deaths:${((state.data[1]?.deaths / 7200000000)*100).toFixed(3)}`,
-      `Recovered:${((state.data[1]?.recovered / 7200000000)*100).toFixed(3)}`,
-      `Uninfected:${(((7200000000 - state.data[1]?.cases) / 7200000000)*100).toFixed(3)}`,
+      `Cases:${((state.data[1]?.cases / 7200000000) * 100).toFixed(3)}`,
+      `Deaths:${((state.data[1]?.deaths / 7200000000) * 100).toFixed(3)}`,
+      `Recovered:${((state.data[1]?.recovered / 7200000000) * 100).toFixed(3)}`,
+      `Uninfected:${(
+        ((7200000000 - state.data[1]?.cases) / 7200000000) *
+        100
+      ).toFixed(3)}`,
     ],
     datasets: [
       {
@@ -38,7 +41,7 @@ const Piechart = () => {
   return (
     <Pcontainer>
       <h2>Worldwide Coronavirus statistics</h2>
-      <Pie data={data} options={config} />
+      <Pie data={data} options={config}  />
     </Pcontainer>
   );
 };
@@ -54,6 +57,12 @@ const Pcontainer = styled.div`
   @media only screen and (max-width: 1000px) {
     width: auto;
     height: 70vh;
+    margin-bottom: 90px;
+  }
+  @media only screen and (max-height: 550px) {
+    width: auto;
+    height: 70vh;
+    margin-bottom: 300px;
   }
 `;
 

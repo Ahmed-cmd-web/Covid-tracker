@@ -74,16 +74,21 @@ function Header() {
 }
 
 const Container = styled.div`
-  width: 65vw;
   height: auto;
   display: flex;
   flex-direction: column;
-  
+  @media only screen and (min-width: 1001px) {
+    width: 65vw;
+  }
+  @media only screen and (max-width: 1000px) {
+    width: 95%;
+  }
 `;
 const Row = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
   select {
     width: 100px;
     height: 35px;

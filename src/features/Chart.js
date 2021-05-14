@@ -17,7 +17,7 @@ const Chart = () => {
     let cc = i.cases;
     return tabledata.push({ country: c, cases: cc });
   });
-
+  
   const columns = [
     {
       name: "country",
@@ -95,6 +95,7 @@ const Container5 = styled.div`
   @media only screen and (min-width: 1001px) {
     display: flex;
     padding: 10px;
+    box-shadow: 5px 9px 5px 3px gainsboro;
 
     height: 85%;
     width: 28vw;

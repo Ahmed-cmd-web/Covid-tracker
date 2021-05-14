@@ -14,28 +14,49 @@ function App() {
   const dispatch = useDispatch();
   const [loading, setloading] = useState(true);
   useEffect(() => {
-    axios
-      .get("https://disease.sh/v3/covid-19/countries")
-      .then((r) => {
-        dispatch(reducer1(r.data));
-      })
-      .catch((e) => console.log(e.message));
-    axios
-      .get("https://disease.sh/v3/covid-19/all")
-      .then((r2) => {
-        dispatch(reducer1(r2.data));
-        dispatch(reducer2(r2.data));
-      })
-      .catch((e) => console.log(e.message));
-    axios
-      .get("https://disease.sh/v3/covid-19/historical/all?lastdays=10")
-      .then((r3) => {
-        dispatch(reducer1(r3.data));
-        setloading(false);
-      })
-      .catch((e) => console.log(e.message));
+    let func = async () => {
+      await axios
+        .get("https://disease.sh/v3/covid-19/countries")
+        .then((r) => r)
+        .then((r) => {
+          dispatch(reducer1(r.data));
+          
+        })
+        .catch((e) => {
+          console.log(e.message);
+        });
+    };
+    func();
+  }, [dispatch]);
+  useEffect(() => {
+    let func = async () => {
+      await axios
+        .get("https://disease.sh/v3/covid-19/all")
+        .then((r2) => r2)
+        .then((r2) => {
+          dispatch(reducer1(r2.data));
+          dispatch(reducer2(r2.data));
+          
+        })
+        .catch((e) => console.log(e.message));
+    };
+    func();
   }, [dispatch]);
 
+  useEffect(() => {
+    let func = async () => {
+      await axios
+        .get("https://disease.sh/v3/covid-19/historical/all?lastdays=10")
+        .then((r3) => r3)
+        .then((r3) => {
+          dispatch(reducer1(r3.data));
+          
+        })
+        .catch((e) => console.log(e.message));
+    };
+    func();
+  }, [dispatch]);
+  setTimeout(() => setloading(false), 5000);
   if (loading) {
     return (
       <div className="loader">

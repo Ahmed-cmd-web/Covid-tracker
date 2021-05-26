@@ -19,6 +19,7 @@ function Header() {
     return num;
   };
   const state = useSelector(info);
+
   const dispatch = useDispatch();
   const handle = (e) => {
     if (e.target.value === "Worldwide") {
@@ -47,6 +48,7 @@ function Header() {
         <Card
           topic="cases"
           title="Coronavirus Cases"
+          active={"cases" === state.current[0]?.topic}
           pcolor="red"
           num={Formatter(state.selcted[0]?.todayCases)}
           sub={Formatter(state.selcted[0]?.cases)}
@@ -55,6 +57,7 @@ function Header() {
         <Card
           topic="recovered"
           title="Recovered"
+          active={"recovered" === state.current[0]?.topic}
           pcolor="lightgreen"
           num={Formatter(state.selcted[0]?.todayRecovered)}
           sub={Formatter(state.selcted[0]?.recovered)}
@@ -63,6 +66,7 @@ function Header() {
         <Card
           topic="deaths"
           title="Deaths"
+          active={"deaths" === state.current[0]?.topic}
           pcolor="black"
           num={Formatter(state.selcted[0]?.todayDeaths)}
           sub={Formatter(state.selcted[0]?.deaths)}

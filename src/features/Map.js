@@ -49,7 +49,7 @@ const Map = () => {
                 ? calcradii(i.cases)
                 : selected.current[0].topic === "recovered"
                 ? calcradii(i.recovered)
-                : calcradii(i.deaths)
+                : calcradii(i.deaths*20)
             }
           >
             <Popup className="pop">

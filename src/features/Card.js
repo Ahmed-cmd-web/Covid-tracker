@@ -11,22 +11,23 @@ const Card = (props) => {
     <Container
       onClick={(e) => {
         dispatch(reducer3(props));
-
         return e.preventDefault;
       }}
       href="#"
     >
-      <span className="tar" style={{ backgroundColor: props.pcolor }}></span>
+      {props.active && (
+        <span className="tar" style={{ backgroundColor: props.pcolor }}></span>
+      )}
       <Content>
         <h5>{props.title}</h5>
-        <h2 style={{ color: props.color }}>+{props.num}</h2>
+        <h2 style={{ color: props.pcolor }}>+{props.num}</h2>
         <span>{props.sub} Total</span>
       </Content>
     </Container>
   );
 };
 
-const Container = styled.a`
+const Container = styled.div`
   background-color: white;
   border: 1px solid gainsboro;
   border-radius: 5px;
@@ -36,7 +37,7 @@ const Container = styled.a`
   width: 32.5%;
   height: 130px;
   color: grey;
-  &  h5 {
+  & h5 {
     flex-wrap: wrap;
     width: 60%;
   }
@@ -54,7 +55,7 @@ const Container = styled.a`
   text-decoration: none;
   cursor: pointer;
   .tar {
-    display: none;
+    display: flex;
     width: 100%;
     height: 10%;
     border-top: 1px transparent black;

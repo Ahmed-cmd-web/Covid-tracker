@@ -9,27 +9,23 @@ import { info } from "./reducer";
 
 const Piechart = () => {
   const state = useSelector(info);
-
   const data = {
     labels: [
-      `Cases:${((state.data[1]?.cases / 7200000000) * 100).toFixed(3)}`,
-      `Deaths:${((state.data[1]?.deaths / 7200000000) * 100).toFixed(3)}`,
-      `Recovered:${((state.data[1]?.recovered / 7200000000) * 100).toFixed(3)}`,
-      `Uninfected:${(
-        ((7200000000 - state.data[1]?.cases) / 7200000000) *
-        100
-      ).toFixed(3)}`,
+      `Cases:${((state.data[2]?.cases / 7200000000) * 100).toFixed(2)}%`,
+      `Deaths:${((state.data[2]?.deaths / 7200000000) * 100).toFixed(2)}%`,
+      `Recovered:${((state.data[2]?.recovered / 7200000000) * 100).toFixed(
+        2
+      )}%`,
     ],
     datasets: [
       {
         label: "Worldwide statistics",
         data: [
-          state.data[1]?.cases,
-          state.data[1]?.deaths,
-          state.data[1]?.recovered,
-          7200000000 - state.data[1]?.cases,
+          state.data[2]?.cases,
+          state.data[2]?.deaths,
+          state.data[2]?.recovered,
         ],
-        backgroundColor: ["lightcoral", "black", "lightgreen", "white"],
+        backgroundColor: ["lightcoral", "black", "lightgreen"],
         hoverOffset: 1,
       },
     ],
@@ -41,7 +37,7 @@ const Piechart = () => {
   return (
     <Pcontainer>
       <h2>Worldwide Coronavirus statistics</h2>
-      <Pie data={data} options={config}  />
+      <Pie data={data} options={config} />
     </Pcontainer>
   );
 };

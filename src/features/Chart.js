@@ -9,7 +9,6 @@ import { info } from "./reducer";
 const Chart = () => {
   const state = useSelector(info);
   var topic = state.current[0];
-
   var tabledata = [];
 
   state.data[0]?.map((i) => {
@@ -17,7 +16,7 @@ const Chart = () => {
     let cc = i.cases;
     return tabledata.push({ country: c, cases: cc });
   });
-  
+
   const columns = [
     {
       name: "country",
@@ -31,13 +30,12 @@ const Chart = () => {
     },
   ];
   const data = {
-    labels: Object.keys(state.data[2][topic.topic]),
+    labels: Object.keys(state.data[1][topic.topic]),
 
     datasets: [
-      
       {
         label: "cases",
-        data: Object.values(state.data[2][topic.topic]),
+        data: Object.values(state.data[1][topic.topic]),
         fill: true,
         backgroundColor: "lightcoral",
         borderColor: "red",
@@ -73,7 +71,7 @@ const Chart = () => {
         fixedHeader={true}
         striped={true}
         dense
-        style={{ height: "50%" }}
+        style={{ height: "50%", marginBottom: 0 }}
         highlightOnHover
         overflowY
         allowOverflow
@@ -84,6 +82,7 @@ const Chart = () => {
         <Line
           style={{ height: "150px", width: "250px" }}
           data={data}
+          type=''
           options={config}
         />
       </div>

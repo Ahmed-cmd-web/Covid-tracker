@@ -1,6 +1,6 @@
 /** @format */
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MapContainer, TileLayer, CircleMarker, Popup } from "react-leaflet";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
@@ -23,13 +23,26 @@ const Map = () => {
     }
     return num;
   };
+  const [map, setmap] = useState(null);
+  var s = selected.selcted[0];
+  useEffect(() => {
+    if (s.countryInfo) {
+      map?.setView(
+        {
+          lat: s.countryInfo?.lat,
+          lng: s.countryInfo?.long,
+        },
+        5
+      );
+    }
+  }, [s, map]);
   return (
     <Container2>
       <MapContainer
         center={[45, 45]}
         zoom={3}
         style={{ height: "100%" }}
-        scrollWheelZoom={true}
+        whenCreated={(e) => setmap(e)}
       >
         <TileLayer
           attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -49,7 +62,7 @@ const Map = () => {
                 ? calcradii(i.cases)
                 : selected.current[0].topic === "recovered"
                 ? calcradii(i.recovered)
-                : calcradii(i.deaths*20)
+                : calcradii(i.deaths * 20)
             }
           >
             <Popup className="pop">
@@ -87,7 +100,7 @@ const Container2 = styled.div`
     padding: 15px;
     margin: 10px auto;
 
-    width: 95%;
+    width: 90%;
     background-color: white;
 
     border-radius: 20px;

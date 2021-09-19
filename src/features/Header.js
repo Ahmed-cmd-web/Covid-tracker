@@ -19,7 +19,6 @@ function Header() {
     return num;
   };
   const state = useSelector(info);
-  console.log(state);
 
   const dispatch = useDispatch();
   const handle = (e) => {

@@ -19,11 +19,12 @@ function Header() {
     return num;
   };
   const state = useSelector(info);
+  console.log(state);
 
   const dispatch = useDispatch();
   const handle = (e) => {
     if (e.target.value === "Worldwide") {
-      dispatch(reducer2(state.data[1]));
+      dispatch(reducer2(state.data[2]));
     } else {
       let index = state.data[0].findIndex((i) => i.country === e.target.value);
       dispatch(reducer2(state.data[0][index]));

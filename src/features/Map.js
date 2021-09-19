@@ -26,7 +26,7 @@ const Map = () => {
   const [map, setmap] = useState(null);
   var s = selected.selcted[0];
   useEffect(() => {
-    if (s.countryInfo) {
+    if (s.countryInfo)
       map?.setView(
         {
           lat: s.countryInfo?.lat,
@@ -34,7 +34,14 @@ const Map = () => {
         },
         5
       );
-    }
+    else
+      map?.setView(
+        {
+          lat: 45,
+          lng: 45,
+        },
+        3
+      );
   }, [s, map]);
   return (
     <Container2>
